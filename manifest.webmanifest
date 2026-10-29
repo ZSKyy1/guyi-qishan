@@ -1,0 +1,23 @@
+{
+  "name": "古艺新创·平凉漆扇",
+  "short_name": "古艺新创",
+  "description": "以漆为墨，以水为媒，一扇一平凉。国家级非遗大漆髹饰技艺 × 平凉地域文化创新实践，支持 NFC 碰一碰查询专属藏品。",
+  "start_url": "./index.html#/home",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F4FBF9",
+  "theme_color": "#0FA98F",
+  "lang": "zh-CN",
+  "categories": ["lifestyle", "shopping", "education"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "序列号查询", "short_name": "查真伪", "url": "./index.html#/sn-query" },
+    { "name": "我的藏品", "short_name": "藏品", "url": "./index.html#/collection" },
+    { "name": "作品展示", "short_name": "作品", "url": "./index.html#/products" }
+  ]
+}

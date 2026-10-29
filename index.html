@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>古艺新创·平凉漆扇</title>
+  <meta name="description" content="以漆为墨，以水为媒，一扇一平凉。国家级非遗大漆髹饰技艺 × 平凉地域文化创新实践。">
+  <meta name="theme-color" content="#0FA98F">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="古艺新创">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+<!-- 桌面端左侧说明（移动端隐藏） -->
+<aside class="desk-side">
+  <div class="desk-brand">
+    <img src="icons/icon-512.png" alt="logo">
+    <div>
+      <h1>古艺新创 · 平凉漆扇</h1>
+      <p>独立 App（PWA）· 无需微信环境</p>
+    </div>
+  </div>
+  <ul class="desk-tips">
+    <li><b>碰一碰</b>：Android Chrome 支持 Web NFC，可直读标签 SN，也可在管理端把 SN 写进空白标签</li>
+    <li><b>扫一扫 / 手动输入</b>：iOS 与不支持 NFC 的设备使用 SN 查询入口</li>
+    <li><b>素材自管</b>：图片视频存本机 IndexedDB，完全离线可用</li>
+    <li><b>安装到桌面</b>：浏览器菜单 →「添加到主屏幕」即成独立 App</li>
+  </ul>
+  <!-- 手机扫码访问（局域网） -->
+  <div class="desk-qr" id="deskQr" hidden>
+    <img src="icons/lan-qr.png" alt="手机扫码访问">
+    <div class="dq-t">手机扫码打开</div>
+    <div class="dq-u" id="dqUrl"></div>
+    <div class="dq-n">手机需与电脑连同一 Wi-Fi<br>换网络后运行 <code>node tools/gen_lan_qr.js</code> 重新生成</div>
+  </div>
+
+  <div class="desk-links">
+    <button class="desk-btn" id="deskInstall">安装到手机 / 桌面</button>
+    <button class="desk-btn ghost" id="deskNfc">NFC 能力自检</button>
+  </div>
+  <p class="desk-note">管理端入口：关于页连点顶部 Logo 5 次</p>
+</aside>
+
+<!-- App 主体：桌面下呈手机外形，移动端全屏 -->
+<div class="phone-stage">
+  <div class="phone" id="phone">
+    <!-- 模拟状态栏 -->
+    <div class="status-bar">
+      <span class="sb-time" id="sbTime">9:41</span>
+      <span class="sb-title" id="sbTitle">古艺新创</span>
+      <span class="sb-right">
+        <i class="sb-sig"></i><i class="sb-wifi"></i><i class="sb-bat"></i>
+      </span>
+    </div>
+
+    <!-- 页面容器：路由把页面 DOM 挂到这里 -->
+    <main class="view" id="view"></main>
+
+    <!-- 底部 TabBar -->
+    <nav class="tabbar" id="tabBar">
+      <button class="tab" data-tab="home"><i class="ti ti-home"></i><span>首页</span></button>
+      <button class="tab" data-tab="products"><i class="ti ti-fan"></i><span>产品</span></button>
+      <button class="tab" data-tab="collection"><i class="ti ti-seal"></i><span>我的藏品</span></button>
+      <button class="tab" data-tab="about"><i class="ti ti-about"></i><span>关于</span></button>
+    </nav>
+
+    <!-- 全局弹层容器 -->
+    <div class="overlay-root" id="overlayRoot"></div>
+
+    <!-- Toast（放在手机内，桌面预览时也出现在屏幕内） -->
+    <div class="toast-root" id="toastRoot"></div>
+  </div>
+</div>
+
+<!-- 图片查看器 -->
+<div class="viewer" id="viewer" hidden>
+  <img id="viewerImg" alt="预览">
+  <button class="viewer-close" id="viewerClose">×</button>
+</div>
+
+<script>
+  // Service Worker：仅在 http/https 下注册（file:// 直接打开会跳过，功能不受影响）
+  if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js').catch(function () { /* 忽略注册失败 */ });
+    });
+  }
+</script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
