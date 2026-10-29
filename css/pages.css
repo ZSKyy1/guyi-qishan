@@ -387,7 +387,15 @@
   font-family: "Songti SC", serif;
   box-shadow: 0 6px 16px rgba(0, 0, 0, .16);
 }
-.mem-top .nm { font-size: 18px; font-weight: 800; }
+.mem-top .nm { font-size: 18px; font-weight: 800; display: flex; align-items: center; gap: 7px; }
+/* 性别标注：女为苹果花粉，男为崆峒青 */
+.mem-gender {
+  font-size: 10.5px; font-weight: 700; line-height: 1;
+  padding: 4px 7px; border-radius: 6px; letter-spacing: .5px;
+  font-family: -apple-system, "PingFang SC", sans-serif;
+}
+.mem-gender.is-f { background: #FFE8EF; color: #D9537C; border: 1px solid #FFD0DD; }
+.mem-gender.is-m { background: #E4F6F2; color: #0B8270; border: 1px solid #C9EAE3; }
 .mem-top .ti {
   display: inline-block; margin-top: 5px; padding: 3px 11px; border-radius: 999px;
   font-size: 12px; font-weight: 700;

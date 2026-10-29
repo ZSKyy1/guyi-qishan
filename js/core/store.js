@@ -13,8 +13,17 @@ const K = {
   collection: 'gy:collection',
   counters: 'gy:counters',
   admin: 'gy:admin',
-  inited: 'gy:inited'
+  inited: 'gy:inited',
+  seedVer: 'gy:seedVer'
 };
+
+/**
+ * 示例数据版本号。
+ * 每次修改 DEMO_PRODUCTS 的内容字段（价格 / 名称 / 故事等）都要 +1，
+ * 已初始化过的设备会在下次打开时自动做一次「保留素材与状态」的内容升级。
+ * v2：团扇/发圈 19.9、折扇 29.9、纸伞 49.9
+ */
+const SEED_VERSION = 2;
 
 const listeners = new Set();
 
@@ -43,7 +52,7 @@ export function subscribe(fn) {
 
 /* ============ 初始化 ============ */
 export function ensureSeed() {
-  if (localStorage.getItem(K.inited)) return;
+  if (localStorage.getItem(K.inited)) { migrateSeed(); return; }
   const now = Date.now();
   const products = DEMO_PRODUCTS.map((p, i) => ({
     id: 'seed_' + (i + 1),
@@ -62,11 +71,46 @@ export function ensureSeed() {
   write(K.collection, ['GY-2026-0001']); // 示例：0001 已在「我的藏品」中（已售出）
   write(K.counters, { sn: { '2026': 8 } });
   localStorage.setItem(K.inited, '1');
+  localStorage.setItem(K.seedVer, String(SEED_VERSION));
+}
+
+/**
+ * 示例数据内容升级：只更新「内容字段」，保留 id / 素材(images, video) / 状态(status, onSale) / NFC 绑定。
+ * 这样改价格不会把用户已上传的图片视频冲掉。
+ */
+function migrateSeed() {
+  const ver = Number(localStorage.getItem(K.seedVer) || 1);
+  if (ver >= SEED_VERSION) return;
+  try {
+    const list = allProducts();
+    if (list.length) {
+      const map = new Map(DEMO_PRODUCTS.map((s) => [s.sn, s]));
+      const next = list.map((p) => {
+        const s = map.get(p.sn);
+        if (!s) return p; // 用户自己新增的作品不动
+        return Object.assign({}, p, {
+          name: s.name,
+          category: s.category,
+          subType: s.subType,
+          patternName: s.patternName,
+          patternStory: s.patternStory,
+          craft: s.craft,
+          usage: s.usage,
+          price: s.price,
+          featured: s.featured
+        });
+      });
+      write(K.products, next);
+    }
+  } catch (e) {
+    // 升级失败不影响使用
+  }
+  localStorage.setItem(K.seedVer, String(SEED_VERSION));
 }
 
 /** 强制重置为示例数据 */
 export function resetSeed() {
-  ['products', 'collection', 'counters', 'inited'].forEach((k) => localStorage.removeItem(K[k]));
+  ['products', 'collection', 'counters', 'inited', 'seedVer'].forEach((k) => localStorage.removeItem(K[k]));
   ensureSeed();
 }
 

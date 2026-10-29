@@ -1,6 +1,6 @@
 /**
  * 内容资产库（与小程序版同源，改为 ES Module）
- * 品牌 / 分类 / 大漆历史 / 漂漆六步法 / 平凉色谱 / 纹样故事 / 项目 / 团队 / 关于 / 示例产品
+ * 品牌 / 分类 / 大漆历史 / 漂漆六步法 / 纹样故事 / 项目 / 团队 / 关于 / 示例产品
  * APP 版说明：示例产品的 images / video 为空数组 → 前端渲染「替换为真实产品图 / 视频」占位块
  */
 
@@ -43,13 +43,14 @@ export const LACQUER_HISTORY = {
 
 export const PIAOQI_STEPS = [
   { key: '静', name: '静', full: '静水待漆', desc: '取清水静置，去其浮躁。水面如镜，方能映出漆色最本真的流动。心境亦需静，手静则纹正。', tip: '水温 20–25℃ 最佳，静置 10 分钟以上', grad: 'var(--grad-brand)' },
-  { key: '调', name: '调', full: '调漆配色', desc: '以平凉色谱为纲，将天然大漆与矿物色粉调和，调入松节油稀释至可滴落之稠度。一色一意，不可杂陈。', tip: '崆峒青、泾河碧、梯田金、丹霞赭、苹果花粉', grad: 'var(--grad-blue)' },
+  { key: '调', name: '调', full: '调漆配色', desc: '以平凉山水之色为纲，将天然大漆与矿物色粉调和，调入松节油稀释至可滴落之稠度。一色一意，不可杂陈。', tip: '崆峒青、泾河碧、梯田金、丹霞赭、苹果花粉', grad: 'var(--grad-blue)' },
   { key: '滴', name: '滴', full: '滴漆入水', desc: '以竹签蘸漆，距水面三寸轻点。漆入水即散，成环、成晕、成云，此为纹样之始。', tip: '滴距越稳，环纹越圆', grad: 'var(--grad-green)' },
   { key: '拨', name: '拨', full: '拨水成纹', desc: '以针或签轻拨水面，牵引漆膜走向。或作云海翻涌，或作回澜层层，或作梯田蜿蜒——全在腕间一分力。', tip: '一纹一故事，拨前先立意', grad: 'var(--grad-gold)' },
   { key: '吸', name: '吸', full: '吸余留清', desc: '以纸轻触水面，吸去浮漆与杂质，使纹样边界清朗。留白处，正是云海的天光。', tip: '吸得越净，纹样越通透', grad: 'var(--grad-orange)' },
   { key: '浸', name: '浸', full: '浸扇取纹', desc: '扇面平入水中，一沉一提，水色尽附于扇。出水刹那，纹样成定局，天下再无第二柄相同。', tip: '入水角度决定纹样走向，不可重复', grad: 'var(--grad-pink)' }
 ];
 
+/* 平凉六色取色参考：仅作为设计取色依据保留，页面已不再单独展示「平凉色谱」板块 */
 export const PINGLIANG_COLORS = [
   { name: '崆峒青', hex: '#0FA98F', en: 'Kongtong Green', from: '崆峒山雨后林霭', meaning: '青绿沉静，取崆峒山雨后林霭之色。主「静」，是漆扇的底色与骨相。', tag: '品牌主色' },
   { name: '泾河碧', hex: '#22C3E6', en: 'Jinghe Blue', from: '泾河清波回澜', meaning: '鲜亮水绿，取泾河清波回澜之色。主「流」，是漂漆最灵动的那一笔。', tag: '品牌主色' },
@@ -109,10 +110,10 @@ export const PROJECT = {
 };
 
 export const TEAM = [
-  { key: 'narrator', name: '柳青岚', title: '项目文化解说员', titleShort: '文化解说员', avatarText: '岚', color: '#0FA98F', duty: '负责大漆髹饰技艺的文化脉络梳理、纹样释义与展陈讲解，让每一件作品「有话可说」。', tags: ['文化脉络', '纹样释义', '展陈讲解'], quote: '一纹一故事，讲的其实是平凉的山水。' },
-  { key: 'planner', name: '沈砚舟', title: '项目策划师', titleShort: '策划师', avatarText: '砚', color: '#22C3E6', duty: '负责项目架构、市场定位与数字化建设，主导 SN 体系与 NFC 溯源方案落地。', tags: ['项目架构', '市场定位', '数字化'], quote: '让千年技艺拥有可追溯的数字身份。' },
-  { key: 'designer', name: '苏漆白', title: '项目核心设计师', titleShort: '核心设计师', avatarText: '漆', color: '#FF7FA0', duty: '负责平凉色谱提炼与纹样设计，将崆峒云海、泾河回澜、庄浪梯田转译为可量产的漆扇语言。', tags: ['纹样设计', '色谱提炼', '产品设计'], quote: '水知道纹样该往哪里走，我只是顺水推舟。' },
-  { key: 'operator', name: '何守拙', title: '项目实践操作员', titleShort: '实践操作员', avatarText: '拙', color: '#FFB300', duty: '负责漂漆六步法的实际制作与品控，把控每一柄扇的成纹质量与良品率。', tags: ['漂漆制作', '工艺品控', '材料调配'], quote: '手静，纹才正。急不得。' }
+  { key: 'narrator', name: '赵欣蕊', gender: '女', title: '项目文化解说员', titleShort: '文化解说员', avatarText: '蕊', color: '#0FA98F', duty: '负责大漆髹饰技艺的文化脉络梳理、纹样释义与展陈讲解，把平凉的山水与故事讲给每一位观者听，让每一件作品「有话可说」。', tags: ['文化脉络', '纹样释义', '展陈讲解'], quote: '一纹一故事，讲的其实是平凉的山水。' },
+  { key: 'planner', name: '张思凯', gender: '男', title: '项目策划师', titleShort: '策划师', avatarText: '凯', color: '#22C3E6', duty: '负责项目架构、市场定位与数字化建设，主导 SN 体系与 NFC 溯源方案落地，让作品从工坊走向市场。', tags: ['项目架构', '市场定位', '数字化'], quote: '让千年技艺拥有可追溯的数字身份。' },
+  { key: 'designer', name: '赵岩', gender: '男', title: '项目核心设计师', titleShort: '核心设计师', avatarText: '岩', color: '#FF7FA0', duty: '负责纹样提炼与产品设计，把崆峒云海、泾河回澜、庄浪梯田等平凉山水意象转译为可量产的漆扇语言，在守住非遗质感的同时贴合年轻人的审美与使用场景。', tags: ['纹样设计', '产品造型', '年轻化表达'], quote: '好纹样不是画上去的，是从水里带出来的。' },
+  { key: 'operator', name: '朱永波', gender: '男', title: '项目实践操作员', titleShort: '实践操作员', avatarText: '波', color: '#FFB300', duty: '负责漂漆六步法的实际制作与品控，从调漆、滴色到浸染提扇，把控每一柄扇的成纹质量与良品率。', tags: ['漂漆制作', '工艺品控', '材料调配'], quote: '手静，纹才正。急不得。' }
 ];
 
 export const ABOUT = {
@@ -139,10 +140,10 @@ export const ABOUT = {
 
 /** 示例产品：images / video 为空 → 前端展示占位块（APP 内可直接上传替换） */
 export const DEMO_PRODUCTS = [
-  { sn: 'GY-2026-0001', name: '崆峒云海·团扇', category: 'fan', subType: '团扇', patternName: '崆峒云海', patternStory: '以崆峒青入水，拨出层层叠涌之云，留白处即山巅天光。取黄帝问道广成子之意，云海之上，问道于心。', craft: '漂漆六步法全手工完成；天然大漆 + 矿物色粉；竹制扇骨，苏工绷面。', usage: '夏日纳凉、汉服配饰、书房陈设、非遗礼赠', status: 'sold', featured: true, onSale: true, price: 598, images: [], video: null, nfcTagId: 'NFC-GY-0001' },
-  { sn: 'GY-2026-0002', name: '泾河回澜·折扇', category: 'fan', subType: '折扇', patternName: '泾河回澜', patternStory: '泾渭分明，清者自清。以泾河碧为主色，水波回旋、层层推远，扇开如一段河湾。', craft: '漂漆取纹后手工折裱；棕竹扇骨 18 方；扇面双面髹漆加固。', usage: '日常把玩、文人雅集、商务礼赠', status: 'unsold', featured: true, onSale: true, price: 468, images: [], video: null, nfcTagId: 'NFC-GY-0002' },
-  { sn: 'GY-2026-0003', name: '庄浪梯田·纸伞', category: 'fan', subType: '纸伞', patternName: '庄浪梯田', patternStory: '梯田金层层叠绕如等高线，一圈圈向上——四十年修出的百万亩梯田，被收进一柄伞里。', craft: '棉纸伞面手工漂漆；桐油罩面防水；竹制伞骨 36 根。', usage: '旗袍搭配、旅拍道具、空间陈列', status: 'unsold', featured: true, onSale: true, price: 728, images: [], video: null, nfcTagId: 'NFC-GY-0003' },
-  { sn: 'GY-2026-0004', name: '苹果花开·发圈', category: 'accessory', subType: '发圈', patternName: '苹果花开', patternStory: '苹果花粉入水即散，如静宁苹果花初绽。粉嫩柔润，是平凉给年轻人最直接的一份甜。', craft: '真丝底料漂漆取纹；手工缝制；内衬高弹力松筋。', usage: '日常佩戴、伴手礼、年轻化入门款', status: 'unsold', featured: true, onSale: true, price: 128, images: [], video: null, nfcTagId: 'NFC-GY-0004' },
+  { sn: 'GY-2026-0001', name: '崆峒云海·团扇', category: 'fan', subType: '团扇', patternName: '崆峒云海', patternStory: '以崆峒青入水，拨出层层叠涌之云，留白处即山巅天光。取黄帝问道广成子之意，云海之上，问道于心。', craft: '漂漆六步法全手工完成；天然大漆 + 矿物色粉；竹制扇骨，苏工绷面。', usage: '夏日纳凉、汉服配饰、书房陈设、非遗礼赠', status: 'sold', featured: true, onSale: true, price: 19.9, images: [], video: null, nfcTagId: 'NFC-GY-0001' },
+  { sn: 'GY-2026-0002', name: '泾河回澜·折扇', category: 'fan', subType: '折扇', patternName: '泾河回澜', patternStory: '泾渭分明，清者自清。以泾河碧为主色，水波回旋、层层推远，扇开如一段河湾。', craft: '漂漆取纹后手工折裱；棕竹扇骨 18 方；扇面双面髹漆加固。', usage: '日常把玩、文人雅集、商务礼赠', status: 'unsold', featured: true, onSale: true, price: 29.9, images: [], video: null, nfcTagId: 'NFC-GY-0002' },
+  { sn: 'GY-2026-0003', name: '庄浪梯田·纸伞', category: 'fan', subType: '纸伞', patternName: '庄浪梯田', patternStory: '梯田金层层叠绕如等高线，一圈圈向上——四十年修出的百万亩梯田，被收进一柄伞里。', craft: '棉纸伞面手工漂漆；桐油罩面防水；竹制伞骨 36 根。', usage: '旗袍搭配、旅拍道具、空间陈列', status: 'unsold', featured: true, onSale: true, price: 49.9, images: [], video: null, nfcTagId: 'NFC-GY-0003' },
+  { sn: 'GY-2026-0004', name: '苹果花开·发圈', category: 'accessory', subType: '发圈', patternName: '苹果花开', patternStory: '苹果花粉入水即散，如静宁苹果花初绽。粉嫩柔润，是平凉给年轻人最直接的一份甜。', craft: '真丝底料漂漆取纹；手工缝制；内衬高弹力松筋。', usage: '日常佩戴、伴手礼、年轻化入门款', status: 'unsold', featured: true, onSale: true, price: 19.9, images: [], video: null, nfcTagId: 'NFC-GY-0004' },
   { sn: 'GY-2026-0005', name: '泾河小澜·发夹', category: 'accessory', subType: '发夹', patternName: '泾河回澜', patternStory: '取泾河一湾小澜，纹样精简，小而完整。', craft: '漆片裁切打磨；黄铜夹体镶嵌；边缘手工倒角。', usage: '日常佩戴、搭配单品', status: 'unsold', featured: false, onSale: true, price: 98, images: [], video: null, nfcTagId: '' },
   { sn: 'GY-2026-0006', name: '崆峒听风·扇坠', category: 'accessory', subType: '扇坠', patternName: '崆峒云海', patternStory: '扇坠虽小，云海俱全。悬于扇柄，行则风动，静则山在。', craft: '漆珠逐颗浸染穿绳；配崆峒青流苏。', usage: '扇坠、包挂、车挂', status: 'unsold', featured: false, onSale: true, price: 168, images: [], video: null, nfcTagId: '' },
   { sn: 'GY-2026-0007', name: '梯田秋收·漆盘', category: 'home', subType: '漆盘', patternName: '庄浪梯田', patternStory: '盘心一圈圈金色梯田，盛果、盛茶、盛四季。', craft: '木胎裱布刮灰；漂漆取纹后罩面推光；可接触食品（干果）。', usage: '茶席果盘、玄关收纳、墙面挂饰', status: 'unsold', featured: true, onSale: true, price: 880, images: [], video: null, nfcTagId: '' },

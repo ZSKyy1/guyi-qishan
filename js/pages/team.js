@@ -27,7 +27,7 @@ export default {
               <div class="mem-top">
                 <div class="mem-avatar" style="background:${m.color}">${esc(m.avatarText)}</div>
                 <div>
-                  <div class="nm font-serif">${esc(m.name)}</div>
+                  <div class="nm font-serif">${esc(m.name)}<span class="mem-gender ${m.gender === '女' ? 'is-f' : 'is-m'}">${esc(m.gender)}</span></div>
                   <div class="ti" style="background:${m.color}22;color:${m.color}">${esc(m.title)}</div>
                 </div>
               </div>

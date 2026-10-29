@@ -1,8 +1,8 @@
 /**
- * 首页：品牌头图 + NFC 查询卡 + 四宫格导航 + 精选作品 + 漂漆六步法 + 平凉色谱 + 作品网格
+ * 首页：品牌头图 + NFC 查询卡 + 四宫格导航 + 精选作品 + 漂漆六步法 + 作品网格
  */
 
-import { BRAND, PIAOQI_STEPS, PINGLIANG_COLORS } from '../data/content.js';
+import { BRAND, PIAOQI_STEPS } from '../data/content.js';
 import { esc, toast } from '../core/ui.js';
 import * as store from '../core/store.js';
 import { go } from '../core/router.js';
@@ -113,24 +113,6 @@ export default {
             </div>`).join('')}
         </div>
 
-        <!-- 平凉色谱 -->
-        <section class="block">
-          <div class="sec-head">
-            <h2>平凉色谱</h2>
-            <span class="more" data-act="more-color">六色含义 ›</span>
-          </div>
-        </section>
-        <div class="palette">
-          ${PINGLIANG_COLORS.map((c) => `
-            <div class="pal-item" data-act="more-color">
-              <div class="pal-swatch" style="background:${c.hex}"><span class="hex">${c.hex}</span></div>
-              <div class="pal-body">
-                <div class="nm">${esc(c.name)}</div>
-                <div class="from">${esc(c.from)}</div>
-              </div>
-            </div>`).join('')}
-        </div>
-
         <!-- 作品网格 -->
         <section class="block">
           <div class="sec-head">
@@ -168,9 +150,6 @@ export default {
     });
     el.querySelectorAll('[data-act="more-culture"]').forEach((b) => {
       b.onclick = () => go('/culture?tab=step');
-    });
-    el.querySelectorAll('[data-act="more-color"]').forEach((b) => {
-      b.onclick = () => go('/culture?tab=color');
     });
 
     el.querySelector('[data-act="sn"]').onclick = () => go('/sn-query');
