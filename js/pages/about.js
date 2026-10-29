@@ -8,6 +8,7 @@ import { esc, toast, copyText, sheet, confirmBox } from '../core/ui.js';
 import { go } from '../core/router.js';
 import { capability } from '../core/nfc.js';
 import * as store from '../core/store.js';
+import { SCROLL, MUSEUM, USERS, NFC, SAVE } from '../core/icons.js';
 
 let tapCount = 0;
 let tapTimer = null;
@@ -24,7 +25,8 @@ export default {
           <img class="ab-logo" id="abLogo" src="icons/icon-192.png" alt="logo">
           <h1 class="font-serif">${esc(BRAND.shortName)}</h1>
           <div class="sl">${esc(BRAND.slogan)}</div>
-          <div class="hr">${esc(BRAND.heritage)} · ${esc(BRAND.region)}</div>
+          <div class="hr">${esc(BRAND.heritage)}</div>
+          <div class="hr sub">${esc(BRAND.region)}</div>
         </section>
 
         <div class="pad" style="margin-top:-16px">
@@ -45,11 +47,11 @@ export default {
           <div class="card card-pad">
             <div class="sec-head" style="padding:0 0 6px"><h2>更多信息</h2></div>
             <div class="ab-links">
-              <button class="ab-row" data-go="/culture"><div class="l"><span class="ico">📜</span>非遗文化</div><span class="arrow">›</span></button>
-              <button class="ab-row" data-go="/project"><div class="l"><span class="ico">🏛</span>项目介绍</div><span class="arrow">›</span></button>
-              <button class="ab-row" data-go="/team"><div class="l"><span class="ico">👥</span>团队介绍</div><span class="arrow">›</span></button>
-              <button class="ab-row" data-act="nfc-check"><div class="l"><span class="ico">📡</span>NFC 能力自检</div><span class="arrow">›</span></button>
-              <button class="ab-row" data-act="backup"><div class="l"><span class="ico">💾</span>数据备份与恢复</div><span class="arrow">›</span></button>
+              <button class="ab-row" data-go="/culture"><div class="l"><span class="ico">${SCROLL}</span>非遗文化</div><span class="arrow">›</span></button>
+              <button class="ab-row" data-go="/project"><div class="l"><span class="ico">${MUSEUM}</span>项目介绍</div><span class="arrow">›</span></button>
+              <button class="ab-row" data-go="/team"><div class="l"><span class="ico">${USERS}</span>团队介绍</div><span class="arrow">›</span></button>
+              <button class="ab-row" data-act="nfc-check"><div class="l"><span class="ico">${NFC}</span>NFC 能力自检</div><span class="arrow">›</span></button>
+              <button class="ab-row" data-act="backup"><div class="l"><span class="ico">${SAVE}</span>数据备份与恢复</div><span class="arrow">›</span></button>
             </div>
           </div>
         </div>
@@ -94,11 +96,11 @@ export default {
       sheet(`
         <div class="sheet-title">NFC 能力自检</div>
         <div class="pd-meta" style="margin:0;box-shadow:none;background:#F7FBFA">
-          <div class="row"><span class="k">Web NFC 接口</span><span class="v">${cap.hasWebNfc ? '✅ 支持' : '❌ 不支持'}</span></div>
-          <div class="row"><span class="k">安全上下文(HTTPS)</span><span class="v">${cap.secure ? '✅ 满足' : '❌ 不满足'}</span></div>
+          <div class="row"><span class="k">Web NFC 接口</span><span class="v">${cap.hasWebNfc ? '✓ 支持' : '✕ 不支持'}</span></div>
+          <div class="row"><span class="k">安全上下文(HTTPS)</span><span class="v">${cap.secure ? '✓ 满足' : '✕ 不满足'}</span></div>
           <div class="row"><span class="k">系统</span><span class="v">${cap.isIOS ? 'iOS' : cap.isAndroid ? 'Android' : '桌面/其他'}</span></div>
-          <div class="row"><span class="k">读标签</span><span class="v">${cap.canRead ? '✅ 可用' : '—'}</span></div>
-          <div class="row"><span class="k">写标签</span><span class="v">${cap.canWrite ? '✅ 可用' : '—'}</span></div>
+          <div class="row"><span class="k">读标签</span><span class="v">${cap.canRead ? '✓ 可用' : '—'}</span></div>
+          <div class="row"><span class="k">写标签</span><span class="v">${cap.canWrite ? '✓ 可用' : '—'}</span></div>
         </div>
         <p style="font-size:13px;line-height:1.8;color:var(--text-2);margin-top:14px">
           ${esc(cap.reason)}

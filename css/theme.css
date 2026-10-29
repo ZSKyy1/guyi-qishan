@@ -11,6 +11,10 @@
 
 /* ============ 1. 设计变量 ============ */
 :root {
+  /* 锁定浅色方案：阻止安卓 Chrome / 微信「强制深色」把白卡片反转成黑卡片 */
+  color-scheme: only light;
+  forced-color-adjust: none;
+
   /* —— 平凉色谱（六色） —— */
   --kt-green: #0FA98F;        /* 崆峒青 · 品牌主色 */
   --kt-green-d: #0B8270;
@@ -91,6 +95,8 @@ body {
 h1, h2, h3, h4, p, ul, ol, figure { margin: 0; padding: 0; }
 ul, ol { list-style: none; }
 img { display: block; max-width: 100%; }
+/* 内联 SVG 图标：随父级字号缩放、随文字颜色着色 */
+svg.ic { width: 1em; height: 1em; display: inline-block; vertical-align: -.12em; flex: none; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
 input, textarea, select { font-family: inherit; font-size: 15px; color: inherit; }
 
@@ -201,6 +207,10 @@ input, textarea, select { font-family: inherit; font-size: 15px; color: inherit;
 }
 @media (max-width: 899px) {
   .desk-side { display: none; }
+  /* 真机上已有系统状态栏，隐藏模拟状态栏，避免「双状态栏 + 假时间 5:35」 */
+  .status-bar { display: none !important; }
+  /* 状态栏让出的安全区由外壳自己补上（刘海屏不遮内容） */
+  .phone { padding-top: var(--safe-t); }
 }
 
 /* —— 模拟状态栏 —— */
@@ -317,8 +327,8 @@ input, textarea, select { font-family: inherit; font-size: 15px; color: inherit;
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M1 21h22v2H1z'/%3E%3Cpath d='M2 20l7-9.5 4.5 6L17 6l5 14z'/%3E%3C/svg%3E");
 }
 .ti-fan {
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3.5 12a8.5 8.5 0 0 1 17 0z'/%3E%3Cpath d='M10.8 12h2.4v9h-2.4z'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3.5 12a8.5 8.5 0 0 1 17 0z'/%3E%3Cpath d='M10.8 12h2.4v9h-2.4z'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='9.2' r='7.1'/%3E%3Cpath d='M10.9 16.3h2.2v4.9h-2.2z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='9.2' r='7.1'/%3E%3Cpath d='M10.9 16.3h2.2v4.9h-2.2z'/%3E%3C/svg%3E");
 }
 .ti-seal {
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1.5l10.5 10.5L12 22.5 1.5 12z'/%3E%3Cpath fill='none' stroke='%23000' stroke-width='1.6' d='M12 6.5l5.5 5.5L12 17.5 6.5 12z'/%3E%3C/svg%3E");
@@ -393,18 +403,28 @@ input, textarea, select { font-family: inherit; font-size: 15px; color: inherit;
   border-radius: 10px;
   background: var(--grad-brand-soft);
   border: 1px solid #CDEAE4;
+  white-space: nowrap;      /* 序列号绝不折行 */
+  max-width: 100%;
 }
 .sn-badge .lab {
   font-size: 11px; font-weight: 700; color: #fff;
   background: var(--kt-green);
   border-radius: 6px; padding: 2px 7px; letter-spacing: .5px;
+  flex: none;
 }
 .sn-badge .val {
   font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   font-size: 14px; font-weight: 700; color: var(--kt-green-d); letter-spacing: .8px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 .sn-badge.lg { padding: 8px 16px 8px 8px; border-radius: 14px; }
 .sn-badge.lg .val { font-size: 18px; }
+
+/* 卡片内紧凑版：前缀 GY- 收进标签位，整串仍完整显示且不折行 */
+.sn-badge.compact { padding: 4px 9px 4px 5px; gap: 5px; border-radius: 8px; }
+.sn-badge.compact .lab { font-size: 10px; padding: 2px 5px; letter-spacing: .3px; }
+.sn-badge.compact .val { font-size: 12px; letter-spacing: .2px; }
 
 /* —— 占位素材块（提示替换为真实图片/视频） —— */
 .ph {
@@ -426,13 +446,17 @@ input, textarea, select { font-family: inherit; font-size: 15px; color: inherit;
     repeating-linear-gradient(115deg, rgba(79, 211, 188, .16) 0 2px, transparent 2px 16px);
   pointer-events: none;
 }
-.ph-ico { font-size: 26px; opacity: .85; }
-.ph-text { font-size: 13px; font-weight: 700; letter-spacing: .5px; z-index: 1; }
-.ph-sub { font-size: 11px; color: var(--jh-blue-d); opacity: .85; z-index: 1; }
+.ph-ico { font-size: 26px; opacity: .85; z-index: 1; display: flex; }
+/* 图标用内联 SVG：不依赖 emoji 字体，任何安卓机型都不会出现「破图方框」 */
+.ph-ico svg { width: 30px; height: 30px; display: block; color: inherit; }
+.ph-text { font-size: 13px; font-weight: 700; letter-spacing: .5px; z-index: 1; text-align: center; }
+.ph-sub { font-size: 11px; color: var(--jh-blue-d); opacity: .85; z-index: 1; text-align: center; }
 .ph.gold { background: linear-gradient(135deg, #FFF6E0, #FFEBD6); color: var(--tt-gold-d); }
 .ph.pink { background: linear-gradient(135deg, #FFEEF3, #FFE6EF); color: #D9537C; }
-.ph.small .ph-ico { font-size: 18px; }
+.ph.small { gap: 4px; padding: 10px; }
+.ph.small .ph-ico svg { width: 24px; height: 24px; }
 .ph.small .ph-text { font-size: 11px; }
+.ph.small .ph-sub { display: none; }
 
 /* —— 空态 —— */
 .empty {

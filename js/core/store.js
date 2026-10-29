@@ -22,8 +22,9 @@ const K = {
  * 每次修改 DEMO_PRODUCTS 的内容字段（价格 / 名称 / 故事等）都要 +1，
  * 已初始化过的设备会在下次打开时自动做一次「保留素材与状态」的内容升级。
  * v2：团扇/发圈 19.9、折扇 29.9、纸伞 49.9
+ * v3：全系价格下调至 80 元以内（发夹与发圈同为 19.9）
  */
-const SEED_VERSION = 2;
+const SEED_VERSION = 3;
 
 const listeners = new Set();
 

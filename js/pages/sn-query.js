@@ -9,6 +9,7 @@ import { go, back } from '../core/router.js';
 import { appBar } from './parts.js';
 import { extractSn } from '../core/sn.js';
 import { capability, readOnce } from '../core/nfc.js';
+import { SEARCH_BOLD, NFC } from '../core/icons.js';
 
 export default {
   tab: null,
@@ -22,7 +23,7 @@ export default {
       <div class="page-body">
         <section class="snq-hero">
           <div class="deco-wave"></div>
-          <div class="ico">🔎</div>
+          <div class="ico">${SEARCH_BOLD}</div>
           <h2>一物一码 · 真伪可查</h2>
           <p>输入作品上的专属序列号，查看它的纹样故事与工艺档案</p>
         </section>
@@ -35,7 +36,7 @@ export default {
           <div class="snq-hint">序列号规则：GY-年份-四位流水号（大小写均可自动识别）</div>
           <button class="btn block lg snq-btn" data-act="query">查询这件作品</button>
 
-          <button class="btn ghost block lg" data-act="nfc" style="margin-top:10px">📡 碰一碰读 NFC 芯片</button>
+          <button class="btn ghost block lg" data-act="nfc" style="margin-top:10px">${NFC} 碰一碰读 NFC 芯片</button>
 
           ${samples.length ? `
             <div style="font-size:12px;color:var(--gray-2);margin-top:16px">示例序列号（点击直接填入）</div>

@@ -112,7 +112,7 @@ export const PROJECT = {
 export const TEAM = [
   { key: 'narrator', name: '赵欣蕊', gender: '女', title: '项目文化解说员', titleShort: '文化解说员', avatarText: '蕊', color: '#0FA98F', duty: '负责大漆髹饰技艺的文化脉络梳理、纹样释义与展陈讲解，把平凉的山水与故事讲给每一位观者听，让每一件作品「有话可说」。', tags: ['文化脉络', '纹样释义', '展陈讲解'], quote: '一纹一故事，讲的其实是平凉的山水。' },
   { key: 'planner', name: '张思凯', gender: '男', title: '项目策划师', titleShort: '策划师', avatarText: '凯', color: '#22C3E6', duty: '负责项目架构、市场定位与数字化建设，主导 SN 体系与 NFC 溯源方案落地，让作品从工坊走向市场。', tags: ['项目架构', '市场定位', '数字化'], quote: '让千年技艺拥有可追溯的数字身份。' },
-  { key: 'designer', name: '赵岩', gender: '男', title: '项目核心设计师', titleShort: '核心设计师', avatarText: '岩', color: '#FF7FA0', duty: '负责纹样提炼与产品设计，把崆峒云海、泾河回澜、庄浪梯田等平凉山水意象转译为可量产的漆扇语言，在守住非遗质感的同时贴合年轻人的审美与使用场景。', tags: ['纹样设计', '产品造型', '年轻化表达'], quote: '好纹样不是画上去的，是从水里带出来的。' },
+  { key: 'designer', name: '赵岩', gender: '男', title: '项目核心设计师', titleShort: '核心设计师', avatarText: '岩', color: '#FF6B4A', duty: '负责漆扇的纹样与器型设计：从漂漆在水面上不可复现的偶然纹理出发，提炼出可复用又不重复的视觉语言；把控色彩层次、扇面比例与持握手感，让天然大漆的质感在当代审美与日常使用中自然成立。', tags: ['视觉设计', '器型比例', '当代审美'], quote: '好纹样不是画上去的，是从水里带出来的。' },
   { key: 'operator', name: '朱永波', gender: '男', title: '项目实践操作员', titleShort: '实践操作员', avatarText: '波', color: '#FFB300', duty: '负责漂漆六步法的实际制作与品控，从调漆、滴色到浸染提扇，把控每一柄扇的成纹质量与良品率。', tags: ['漂漆制作', '工艺品控', '材料调配'], quote: '手静，纹才正。急不得。' }
 ];
 
@@ -130,12 +130,12 @@ export const ABOUT = {
   ],
   contactTitle: '联系我们',
   contacts: [
-    { label: '项目微信', value: 'guyi-xinchuang（示例）', copyable: true },
-    { label: '合作邮箱', value: 'hello@guyi-xinchuang.cn（示例）', copyable: true },
+    { label: '项目微信', value: 'zsk1535206', copyable: true },
+    { label: '合作邮箱', value: '2134115925@qq.com', copyable: true },
     { label: '项目地址', value: '甘肃省平凉市崆峒区 · 古艺新创漆艺工坊（示例）', copyable: false },
     { label: '非遗项目', value: '大漆髹饰技艺（国家级非物质文化遗产）', copyable: false }
   ],
-  disclaimer: '本 App 所载联系方式、示例产品与价格均为演示数据，正式使用前请在「管理端」替换为真实信息。'
+  disclaimer: '本 App 的示例产品、价格与作品图为演示数据，正式使用前请在「管理端」替换为真实信息。'
 };
 
 /** 示例产品：images / video 为空 → 前端展示占位块（APP 内可直接上传替换） */
@@ -144,8 +144,8 @@ export const DEMO_PRODUCTS = [
   { sn: 'GY-2026-0002', name: '泾河回澜·折扇', category: 'fan', subType: '折扇', patternName: '泾河回澜', patternStory: '泾渭分明，清者自清。以泾河碧为主色，水波回旋、层层推远，扇开如一段河湾。', craft: '漂漆取纹后手工折裱；棕竹扇骨 18 方；扇面双面髹漆加固。', usage: '日常把玩、文人雅集、商务礼赠', status: 'unsold', featured: true, onSale: true, price: 29.9, images: [], video: null, nfcTagId: 'NFC-GY-0002' },
   { sn: 'GY-2026-0003', name: '庄浪梯田·纸伞', category: 'fan', subType: '纸伞', patternName: '庄浪梯田', patternStory: '梯田金层层叠绕如等高线，一圈圈向上——四十年修出的百万亩梯田，被收进一柄伞里。', craft: '棉纸伞面手工漂漆；桐油罩面防水；竹制伞骨 36 根。', usage: '旗袍搭配、旅拍道具、空间陈列', status: 'unsold', featured: true, onSale: true, price: 49.9, images: [], video: null, nfcTagId: 'NFC-GY-0003' },
   { sn: 'GY-2026-0004', name: '苹果花开·发圈', category: 'accessory', subType: '发圈', patternName: '苹果花开', patternStory: '苹果花粉入水即散，如静宁苹果花初绽。粉嫩柔润，是平凉给年轻人最直接的一份甜。', craft: '真丝底料漂漆取纹；手工缝制；内衬高弹力松筋。', usage: '日常佩戴、伴手礼、年轻化入门款', status: 'unsold', featured: true, onSale: true, price: 19.9, images: [], video: null, nfcTagId: 'NFC-GY-0004' },
-  { sn: 'GY-2026-0005', name: '泾河小澜·发夹', category: 'accessory', subType: '发夹', patternName: '泾河回澜', patternStory: '取泾河一湾小澜，纹样精简，小而完整。', craft: '漆片裁切打磨；黄铜夹体镶嵌；边缘手工倒角。', usage: '日常佩戴、搭配单品', status: 'unsold', featured: false, onSale: true, price: 98, images: [], video: null, nfcTagId: '' },
-  { sn: 'GY-2026-0006', name: '崆峒听风·扇坠', category: 'accessory', subType: '扇坠', patternName: '崆峒云海', patternStory: '扇坠虽小，云海俱全。悬于扇柄，行则风动，静则山在。', craft: '漆珠逐颗浸染穿绳；配崆峒青流苏。', usage: '扇坠、包挂、车挂', status: 'unsold', featured: false, onSale: true, price: 168, images: [], video: null, nfcTagId: '' },
-  { sn: 'GY-2026-0007', name: '梯田秋收·漆盘', category: 'home', subType: '漆盘', patternName: '庄浪梯田', patternStory: '盘心一圈圈金色梯田，盛果、盛茶、盛四季。', craft: '木胎裱布刮灰；漂漆取纹后罩面推光；可接触食品（干果）。', usage: '茶席果盘、玄关收纳、墙面挂饰', status: 'unsold', featured: true, onSale: true, price: 880, images: [], video: null, nfcTagId: '' },
-  { sn: 'GY-2026-0008', name: '丝路驼铃·礼盒', category: 'culture', subType: '礼盒', patternName: '丝路驼铃', patternStory: '丹霞赭作沙丘之暖，苹果花粉点染花开——大漠落日与春天的一次相遇。', craft: '礼盒内含漆扇 1 柄 + 纹样卡 + SN 证书；盒面丝网印平凉纹样。', usage: '政企礼赠、文旅伴手礼、节庆定制', status: 'unsold', featured: false, onSale: true, price: 1280, images: [], video: null, nfcTagId: '' }
+  { sn: 'GY-2026-0005', name: '泾河小澜·发夹', category: 'accessory', subType: '发夹', patternName: '泾河回澜', patternStory: '取泾河一湾小澜，纹样精简，小而完整。', craft: '漆片裁切打磨；黄铜夹体镶嵌；边缘手工倒角。', usage: '日常佩戴、搭配单品', status: 'unsold', featured: false, onSale: true, price: 19.9, images: [], video: null, nfcTagId: '' },
+  { sn: 'GY-2026-0006', name: '崆峒听风·扇坠', category: 'accessory', subType: '扇坠', patternName: '崆峒云海', patternStory: '扇坠虽小，云海俱全。悬于扇柄，行则风动，静则山在。', craft: '漆珠逐颗浸染穿绳；配崆峒青流苏。', usage: '扇坠、包挂、车挂', status: 'unsold', featured: false, onSale: true, price: 29.9, images: [], video: null, nfcTagId: '' },
+  { sn: 'GY-2026-0007', name: '梯田秋收·漆盘', category: 'home', subType: '漆盘', patternName: '庄浪梯田', patternStory: '盘心一圈圈金色梯田，盛果、盛茶、盛四季。', craft: '木胎裱布刮灰；漂漆取纹后罩面推光；可接触食品（干果）。', usage: '茶席果盘、玄关收纳、墙面挂饰', status: 'unsold', featured: true, onSale: true, price: 69.9, images: [], video: null, nfcTagId: '' },
+  { sn: 'GY-2026-0008', name: '丝路驼铃·礼盒', category: 'culture', subType: '礼盒', patternName: '丝路驼铃', patternStory: '丹霞赭作沙丘之暖，苹果花粉点染花开——大漠落日与春天的一次相遇。', craft: '礼盒内含漆扇 1 柄 + 纹样卡 + SN 证书；盒面丝网印平凉纹样。', usage: '政企礼赠、文旅伴手礼、节庆定制', status: 'unsold', featured: false, onSale: true, price: 79.9, images: [], video: null, nfcTagId: '' }
 ];

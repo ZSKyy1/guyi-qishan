@@ -7,6 +7,7 @@ import { esc, toast, copyText, viewImage, placeholderHtml } from '../core/ui.js'
 import * as store from '../core/store.js';
 import { go, back } from '../core/router.js';
 import { appBar, catOf, statusText, hydrateMedia, videoBlock, hydrateVideo } from './parts.js';
+import { CHECK, SEARCH, COMPASS } from '../core/icons.js';
 
 export default {
   tab: null,
@@ -39,8 +40,8 @@ export default {
           ${imgs.length > 1 ? `<div class="pd-dots" id="pdDots">${imgs.map((_, i) => `<i class="${i === 0 ? 'on' : ''}"></i>`).join('')}</div>` : ''}
         </div>
 
-        <!-- 视频 -->
-        ${videoBlock(p)}
+        <!-- 视频（仅在有素材时出现，避免首屏被空占位块占满） -->
+        ${(p.video && p.video.id) ? videoBlock(p) : ''}
 
         <!-- 主体信息 -->
         <div class="pd-main">
@@ -64,7 +65,7 @@ export default {
             <button class="btn sm ghost copy" data-act="copy-sn">复制</button>
           </div>
 
-          ${mine ? `<div class="pd-mine">🏅 我的藏品 · 此件作品已登记在你的名下</div>` : ''}
+          ${mine ? `<div class="pd-mine">${CHECK} 我的藏品 · 此件作品已登记在你的名下</div>` : ''}
         </div>
 
         <!-- 纹样故事 -->
@@ -103,9 +104,9 @@ export default {
 
       <!-- 底部操作栏 -->
       <div class="pd-bar">
-        <button class="icon-btn" data-act="sn-query" title="查询其他">🔍</button>
+        <button class="icon-btn" data-act="sn-query" title="查询其他">${SEARCH}</button>
         <button class="btn ${store.inCollection(p.sn) ? 'ghost' : ''}" data-act="collect">
-          ${store.inCollection(p.sn) ? '已在藏品中 · 点击移出' : '＋ 加入我的藏品'}
+          ${store.inCollection(p.sn) ? '已在藏品中' : '＋ 加入我的藏品'}
         </button>
         <button class="btn gold" data-act="nfc">碰一碰</button>
       </div>
@@ -156,7 +157,7 @@ export default {
     el.querySelector('[data-act="collect"]').onclick = (e) => {
       const now = store.toggleCollection(sn);
       toast(now ? '已加入我的藏品' : '已移出我的藏品');
-      e.target.textContent = now ? '已在藏品中 · 点击移出' : '＋ 加入我的藏品';
+      e.target.textContent = now ? '已在藏品中' : '＋ 加入我的藏品';
       e.target.classList.toggle('ghost', now);
     };
 
@@ -195,7 +196,7 @@ function notFoundHtml(sn) {
     ${appBar('查询作品')}
     <div class="page-body">
       <div class="nf">
-        <div class="ico">🧭</div>
+        <div class="ico">${COMPASS}</div>
         <h3>没有找到这件作品</h3>
         <p>${sn ? `序列号 <b>${esc(sn)}</b> 暂未登记。<br>请确认是否输入有误，或联系出品方核实。` : '未提供序列号。<br>请输入作品上的专属序列号，或碰一碰产品上的 NFC 芯片。'}</p>
         <div class="acts">

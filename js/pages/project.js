@@ -6,6 +6,10 @@ import { PROJECT, BRAND } from '../data/content.js';
 import { esc } from '../core/ui.js';
 import { appBar } from './parts.js';
 import { back } from '../core/router.js';
+import { SHIELD, NFC, SPROUT } from '../core/icons.js';
+
+/** 总体思路三个方块的内联图标（替代 emoji） */
+const APPR_ICO = { guard: SHIELD, market: NFC, ecosystem: SPROUT };
 
 export default {
   tab: null,
@@ -53,7 +57,7 @@ export default {
           <div class="body" style="margin-top:12px">
             ${p.approach.map((a) => `
               <div class="appr-card">
-                <div class="appr-ico" style="background:${a.color}">${a.icon}</div>
+                <div class="appr-ico" style="background:${a.color}">${APPR_ICO[a.key] || ''}</div>
                 <div>
                   <h4 class="font-serif">${esc(a.name)}</h4>
                   <p>${esc(a.desc)}</p>

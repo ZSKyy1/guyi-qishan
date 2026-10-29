@@ -8,6 +8,7 @@ import { LACQUER_HISTORY, PIAOQI_STEPS, PATTERNS } from '../data/content.js';
 import { esc } from '../core/ui.js';
 import { appBar, catName } from './parts.js';
 import { back } from '../core/router.js';
+import { BULB } from '../core/icons.js';
 
 const TABS = [
   { key: 'history', name: '大漆历史' },
@@ -92,7 +93,7 @@ const TAB_BODY = {
             <div class="step-c">
               <div class="h"><span class="n">${i + 1}. ${esc(s.full)}</span></div>
               <div class="d">${esc(s.desc)}</div>
-              <div class="tip">💡 ${esc(s.tip)}</div>
+              <div class="tip">${BULB} ${esc(s.tip)}</div>
             </div>
           </div>`).join('')}
       </div>

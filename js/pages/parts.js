@@ -19,6 +19,9 @@ export function statusText(s) {
   return s === 'sold' ? '已售出' : '未售出';
 }
 
+/** 内联 SVG 图标（不依赖 emoji 字体，任何机型都不会出现破图方框） */
+export const ICO_SEARCH = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.4" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M15.9 15.9L21 21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>`;
+
 /** 二级页顶部导航栏 */
 export function appBar(title, opts = {}) {
   const right = opts.right || '';
@@ -44,21 +47,28 @@ export function pageShellPlain(bodyHtml, withBody = true) {
   </div>`;
 }
 
-/** SN 徽章 */
-export function snBadge(sn, big = false) {
-  return `<span class="sn-badge ${big ? 'lg' : ''}"><span class="lab">SN</span><span class="val">${esc(sn)}</span></span>`;
+/** SN 徽章
+ *  compact=true 时把固定前缀 GY- 收进标签位，卡片内保证单行不折行
+ */
+export function snBadge(sn, big = false, compact = false) {
+  const full = String(sn || '');
+  if (compact) {
+    const body = full.replace(/^GY-/, '');
+    const prefix = body === full ? 'SN' : 'GY-';
+    return `<span class="sn-badge compact"><span class="lab">${esc(prefix)}</span><span class="val">${esc(body)}</span></span>`;
+  }
+  return `<span class="sn-badge ${big ? 'lg' : ''}"><span class="lab">SN</span><span class="val">${esc(full)}</span></span>`;
 }
 
-/**
- * 产品缩略图容器
+/** 产品缩略图容器
  * 有素材 → 空容器（mount 阶段回填 img）；无素材 → 占位块（提示替换真实产品图）
  */
-export function thumbHtml(p, cls = 'p-img', small = false) {
+export function thumbHtml(p, cls = 'p-img', small = false, tip = '') {
   const first = (p.images && p.images[0]) || p.cover || '';
   if (first) {
     return `<div class="${cls}" data-mid="${esc(first)}"></div>`;
   }
-  return `<div class="${cls}" data-mid="">${placeholderHtml('image', small ? 'small' : 'large')}</div>`;
+  return `<div class="${cls}" data-mid="">${placeholderHtml('image', small ? 'small' : 'large', tip)}</div>`;
 }
 
 /** 产品网格卡片 */
@@ -66,11 +76,11 @@ export function productCard(p) {
   const c = catOf(p.category);
   const sold = p.status === 'sold';
   return `<div class="p-card" data-sn="${esc(p.sn)}">
-    ${thumbHtml(p)}
+    ${thumbHtml(p, 'p-img', true, '待上传实拍图')}
     <div class="p-body">
       <div class="p-name">${esc(p.name)}</div>
       <div class="p-sub">${esc(c.name)} · ${esc(p.subType || '')}</div>
-      <div class="p-sn">${snBadge(p.sn)}</div>
+      <div class="p-sn">${snBadge(p.sn, false, true)}</div>
       <div class="p-foot">
         ${p.price ? `<div class="p-price">¥${esc(p.price)}</div>` : '<div class="p-price free">非卖品</div>'}
         <div class="p-status ${sold ? 'sold' : 'unsold'}">${statusText(p.status)}</div>

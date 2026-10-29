@@ -6,14 +6,15 @@ import { BRAND, PIAOQI_STEPS } from '../data/content.js';
 import { esc, toast } from '../core/ui.js';
 import * as store from '../core/store.js';
 import { go } from '../core/router.js';
-import { productCard, hydrateMedia, catOf } from './parts.js';
+import { productCard, hydrateMedia, catOf, snBadge } from './parts.js';
+import { FAN, SCROLL, BOOKMARK, MUSEUM, NFC, IMAGE } from '../core/icons.js';
 import { capability, readOnce } from '../core/nfc.js';
 
 const NAV = [
-  { key: 'products', icon: '🪭', name: '产品展示', grad: 'var(--grad-brand)' },
-  { key: 'culture', icon: '📜', name: '非遗文化', grad: 'var(--grad-gold)' },
-  { key: 'collection', icon: '🔖', name: '我的藏品', grad: 'var(--grad-pink)' },
-  { key: 'project', icon: '🏛', name: '项目介绍', grad: 'var(--grad-orange)' }
+  { key: 'products', icon: FAN, name: '产品展示', grad: 'var(--grad-brand)' },
+  { key: 'culture', icon: SCROLL, name: '非遗文化', grad: 'var(--grad-gold)' },
+  { key: 'collection', icon: BOOKMARK, name: '我的藏品', grad: 'var(--grad-pink)' },
+  { key: 'project', icon: MUSEUM, name: '项目介绍', grad: 'var(--grad-orange)' }
 ];
 
 export default {
@@ -42,7 +43,7 @@ export default {
             </div>
             <div class="hero-badge">${esc(BRAND.heritage.split(' · ')[0])}</div>
           </div>
-          <h1 class="hero-slogan font-serif">${esc(BRAND.slogan)}</h1>
+          <h1 class="hero-slogan font-serif">${BRAND.slogan.split('，').map((t, i, arr) => `<span class="sl">${esc(t)}${i < arr.length - 1 ? '，' : ''}</span>`).join('')}</h1>
           <p class="hero-sub">${esc(BRAND.subSlogan)}</p>
           <p class="hero-intro" id="heroIntro">${esc(BRAND.intro)}</p>
           <button class="hero-more" data-act="toggle-intro">展开全文 ›</button>
@@ -51,7 +52,7 @@ export default {
         <!-- NFC 碰一碰卡 -->
         <section class="nfc-card">
           <div class="nfc-head">
-            <div class="nfc-ico">📡</div>
+            <div class="nfc-ico">${NFC}</div>
             <div>
               <h3>碰一碰，验明正身</h3>
               <p>贴近产品上的 NFC 芯片，直达你的专属藏品</p>
@@ -83,7 +84,7 @@ export default {
           ${featured.length ? featured.map((p) => `
             <div class="feat-card" data-sn="${esc(p.sn)}">
               <div class="feat-img" data-mid="${esc((p.images && p.images[0]) || p.cover || '')}">${
-                ((p.images && p.images[0]) || p.cover) ? '' : '<div class="ph" style="height:100%"><div class="ph-ico">🖼</div><div class="ph-text">替换为真实产品图</div></div>'
+                ((p.images && p.images[0]) || p.cover) ? '' : `<div class="ph small" style="height:100%"><div class="ph-ico">${IMAGE}</div><div class="ph-text">待上传实拍图</div></div>`
               }</div>
               <div class="feat-body">
                 <h4>${esc(p.name)}</h4>

@@ -133,10 +133,14 @@ export function emptyHtml(icon, title, sub = '') {
   return `<div class="empty"><div class="e-ico">${icon}</div><div class="e-t">${esc(title)}</div>${sub ? `<div class="e-s">${esc(sub)}</div>` : ''}</div>`;
 }
 
-/** 占位素材块（提示用户替换为真实图/视频） */
+/** 占位素材块（提示用户替换为真实图/视频）
+ *  图标一律用内联 SVG：emoji 在部分安卓机型 / 定制 ROM 上会渲染成「破图方框」
+ */
 export function placeholderHtml(type = 'image', size = 'large', text = '') {
   const isVideo = type === 'video';
-  const ico = isVideo ? '▶' : '🖼';
+  const ico = isVideo
+    ? `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M10 8.4v7.2l6-3.6z" fill="currentColor"/></svg>`
+    : `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.6" width="18" height="14.8" rx="3.2" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="8.4" cy="9.6" r="1.5" fill="currentColor"/><path d="M4.2 17.2l4.5-4.3 3.1 2.9 2.7-2.4 5.3 4.3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
   const t = text || (isVideo ? '替换为真实产品视频' : '替换为真实产品图');
   const sub = isVideo ? '管理端上传后立即在此播放' : '管理端上传后立即展示';
   return `<div class="ph ${size === 'small' ? 'small' : ''}">

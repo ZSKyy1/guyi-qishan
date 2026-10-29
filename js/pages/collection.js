@@ -7,6 +7,7 @@ import * as store from '../core/store.js';
 import { go, refresh } from '../core/router.js';
 import { productCard, hydrateMedia, emptyBlock } from './parts.js';
 import { capability, readOnce } from '../core/nfc.js';
+import { BOOKMARK, NFC } from '../core/icons.js';
 
 export default {
   tab: 'collection',
@@ -40,11 +41,11 @@ export default {
         <div id="colGrid">
           ${list.length
             ? `<div class="grid-2">${list.map(productCard).join('')}</div>`
-            : emptyBlock('🔖', '还没有藏品', '碰一碰作品上的 NFC 芯片，或手动输入序列号')}
+            : emptyBlock(BOOKMARK, '还没有藏品', '碰一碰作品上的 NFC 芯片，或手动输入序列号')}
         </div>
 
         <div class="pad" style="display:flex;gap:10px">
-          <button class="btn block" data-act="nfc">📡 碰一碰添加</button>
+          <button class="btn block" data-act="nfc">${NFC} 碰一碰添加</button>
           <button class="btn ghost block" data-act="sn">输入序列号</button>
         </div>
 

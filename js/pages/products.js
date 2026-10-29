@@ -6,7 +6,7 @@ import { CATEGORIES } from '../data/content.js';
 import { esc } from '../core/ui.js';
 import * as store from '../core/store.js';
 import { go } from '../core/router.js';
-import { productCard, hydrateMedia, emptyBlock } from './parts.js';
+import { productCard, hydrateMedia, emptyBlock, ICO_SEARCH } from './parts.js';
 
 let state = { kw: '', cat: 'all' };
 
@@ -21,7 +21,7 @@ export default {
     return `<div class="page">
       <div class="search-bar">
         <div class="search-inp">
-          <span class="ico">🔍</span>
+          <span class="ico">${ICO_SEARCH}</span>
           <input id="kw" placeholder="搜索作品名 / 序列号 / 纹样" value="${esc(state.kw)}">
           <button class="search-clear" data-act="clear" ${state.kw ? '' : 'style="display:none"'}>×</button>
         </div>
@@ -50,7 +50,7 @@ export default {
       meta.textContent = `共 ${list.length} 件作品`;
       grid.innerHTML = list.length
         ? list.map(productCard).join('')
-        : emptyBlock('🔍', '没有找到相关作品', '换个关键词，或切换到「全部」系列');
+        : emptyBlock(ICO_SEARCH, '没有找到相关作品', '换个关键词，或切换到「全部」系列');
       hydrateMedia(grid);
       grid.querySelectorAll('[data-sn]').forEach((b) => {
         b.onclick = () => go('/product?sn=' + encodeURIComponent(b.dataset.sn));

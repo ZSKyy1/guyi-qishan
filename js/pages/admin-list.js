@@ -9,6 +9,7 @@ import * as store from '../core/store.js';
 import { go, refresh } from '../core/router.js';
 import { catOf, statusText, emptyBlock } from './parts.js';
 import { getUrl, remove as mediaRemove } from '../core/media.js';
+import { SEARCH, BOX, IMAGE } from '../core/icons.js';
 
 let state = { kw: '', cat: 'all' };
 
@@ -33,7 +34,7 @@ export default {
 
       <div class="search-bar">
         <div class="search-inp">
-          <span class="ico">🔍</span>
+          <span class="ico">${SEARCH}</span>
           <input id="kw" placeholder="搜索名称 / SN / 纹样" value="${esc(state.kw)}">
         </div>
         <button class="btn sm" data-act="add">＋ 新增</button>
@@ -70,7 +71,7 @@ export default {
       // 管理端必须看到全部作品（含已下架），否则无法重新上架
       let list = store.searchAllProducts(state.kw, state.cat);
       list = list.slice().sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
-      box.innerHTML = list.length ? '' : emptyBlock('📦', '还没有作品', '点击右上角「＋ 新增」录入第一件');
+      box.innerHTML = list.length ? '' : emptyBlock(BOX, '还没有作品', '点击右上角「＋ 新增」录入第一件');
 
       for (const p of list) {
         const c = catOf(p.category);
@@ -81,7 +82,7 @@ export default {
         node.innerHTML = `
           <div class="ad-thumb">
             ${url ? `<img src="${url}" style="width:100%;height:100%;object-fit:cover">`
-                  : '<div class="ph small" style="height:100%"><div class="ph-ico">🖼</div><div class="ph-text">待上传</div></div>'}
+                  : '<div class="ph small" style="height:100%"><div class="ph-ico">' + IMAGE + '</div><div class="ph-text">待上传</div></div>'}
           </div>
           <div class="ad-info">
             <div class="nm">${esc(p.name)}</div>

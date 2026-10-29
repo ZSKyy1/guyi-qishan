@@ -11,6 +11,7 @@ import * as store from '../core/store.js';
 import { go, back } from '../core/router.js';
 import { getUrl, pickAndSave, remove as mediaRemove } from '../core/media.js';
 import { capability, writeTag, manualGuide } from '../core/nfc.js';
+import { NFC, PLAY } from '../core/icons.js';
 
 let form = null;
 let isNew = true;
@@ -176,7 +177,7 @@ export default {
               <input id="fNfc" placeholder="如 NFC-GY-0001" value="${esc(form.nfcTagId)}">
             </div>
             <div class="nfc-write-box">
-              <h4>📡 把序列号写进芯片</h4>
+              <h4>${NFC} 把序列号写进芯片</h4>
               <p>Android Chrome 支持直接在 App 内写入。写入后，买家手机碰一碰即可直达这件作品的详情页。</p>
               <div class="row-flex" style="margin-top:10px">
                 <button class="btn sm block" data-act="write-nfc">写入 NFC 标签</button>
@@ -328,7 +329,7 @@ export default {
         };
       } else {
         box.innerHTML = `<button class="up-add" data-act="pick-video" style="width:100%;aspect-ratio:16/9">
-          <span class="plus">▶</span><span>选择介绍视频</span></button>`;
+          <span class="plus">${PLAY}</span><span>选择介绍视频</span></button>`;
         box.querySelector('[data-act="pick-video"]').onclick = async () => {
           let ids = [];
           try {
