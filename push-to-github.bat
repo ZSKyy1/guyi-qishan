@@ -1,6 +1,6 @@
 @echo off
 setlocal
-cd /d "%~dp0"
+cd /d "E:\JNDS\deploy"
 
 echo ==========================================
 echo   GuYi XinChuang App - Push to GitHub
