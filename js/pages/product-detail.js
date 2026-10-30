@@ -26,7 +26,7 @@ export default {
     const imgs = (p.images && p.images.length) ? p.images : [];
 
     return `<div class="page">
-      ${appBar('作品详情', { right: `<button data-act="home" style="color:var(--kt-green);font-weight:600">首页</button>` })}
+      ${appBar('作品详情', { right: `<button data-act="home" style="color:var(--text);font-weight:600">首页</button>` })}
 
       <div class="page-body">
         <!-- 图片轮播 -->
@@ -52,10 +52,7 @@ export default {
             ${p.patternName ? `<span class="tag pink">${esc(p.patternName)}</span>` : ''}
             <span class="tag ${p.status === 'sold' ? 'gray' : 'gold'}">${statusText(p.status)}</span>
           </div>
-          <div class="pd-price-row">
-            ${p.price ? `<span class="pd-currency">¥</span><span class="pd-price">${esc(p.price)}</span>` : '<span class="pd-price" style="font-size:18px">非卖品 · 展示作品</span>'}
-            ${p.price ? '<span class="pd-origin">手工孤品 · 一物一码</span>' : ''}
-          </div>
+          <div class="pd-origin">手工孤品 · 一物一码 · 每件纹样不可复现</div>
 
           <div class="pd-snbox">
             <div class="left">
@@ -69,20 +66,20 @@ export default {
         </div>
 
         <!-- 纹样故事 -->
-        <div class="pd-sec">
+        <div class="pd-sec s-green">
           <h3><i></i>纹样故事</h3>
           ${p.patternName ? `<span class="pattern-name">${esc(p.patternName)}</span>` : ''}
           <p>${esc(p.patternStory || '暂无纹样故事，可在管理端补充。')}</p>
         </div>
 
         <!-- 工艺特色 -->
-        <div class="pd-sec">
+        <div class="pd-sec s-gold">
           <h3><i></i>工艺特色</h3>
           <p>${esc(p.craft || '漂漆六步法：静、调、滴、拨、吸、浸。')}</p>
         </div>
 
         <!-- 用途场景 -->
-        <div class="pd-sec">
+        <div class="pd-sec s-pink">
           <h3><i></i>用途场景</h3>
           <p>${esc(p.usage || '日常把玩、空间陈设、非遗礼赠。')}</p>
         </div>

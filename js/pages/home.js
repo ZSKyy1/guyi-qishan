@@ -3,11 +3,11 @@
  */
 
 import { BRAND, PIAOQI_STEPS } from '../data/content.js';
-import { esc, toast } from '../core/ui.js';
+import { esc, toast, placeholderHtml } from '../core/ui.js';
 import * as store from '../core/store.js';
 import { go } from '../core/router.js';
 import { productCard, hydrateMedia, catOf, snBadge } from './parts.js';
-import { FAN, SCROLL, BOOKMARK, MUSEUM, NFC, IMAGE } from '../core/icons.js';
+import { FAN, SCROLL, BOOKMARK, MUSEUM, NFC } from '../core/icons.js';
 import { capability, readOnce } from '../core/nfc.js';
 
 const NAV = [
@@ -84,13 +84,12 @@ export default {
           ${featured.length ? featured.map((p) => `
             <div class="feat-card" data-sn="${esc(p.sn)}">
               <div class="feat-img" data-mid="${esc((p.images && p.images[0]) || p.cover || '')}">${
-                ((p.images && p.images[0]) || p.cover) ? '' : `<div class="ph small" style="height:100%"><div class="ph-ico">${IMAGE}</div><div class="ph-text">待上传实拍图</div></div>`
+                ((p.images && p.images[0]) || p.cover) ? '' : placeholderHtml('image', 'small')
               }</div>
               <div class="feat-body">
                 <h4>${esc(p.name)}</h4>
                 <div class="sub">${esc(catOf(p.category).name)} · ${esc(p.patternName || '')}</div>
-                <div class="row">
-                  <div class="feat-price">${p.price ? '¥' + esc(p.price) : '非卖品'}</div>
+                <div class="row" style="justify-content:flex-end">
                   <span class="tag ${p.status === 'sold' ? 'gray' : ''}">${p.status === 'sold' ? '已售出' : '在售'}</span>
                 </div>
               </div>

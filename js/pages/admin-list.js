@@ -4,12 +4,12 @@
  */
 
 import { CATEGORIES } from '../data/content.js';
-import { esc, toast, confirmBox } from '../core/ui.js';
+import { esc, toast, confirmBox, placeholderHtml } from '../core/ui.js';
 import * as store from '../core/store.js';
 import { go, refresh } from '../core/router.js';
 import { catOf, statusText, emptyBlock } from './parts.js';
 import { getUrl, remove as mediaRemove } from '../core/media.js';
-import { SEARCH, BOX, IMAGE } from '../core/icons.js';
+import { SEARCH, BOX } from '../core/icons.js';
 
 let state = { kw: '', cat: 'all' };
 
@@ -82,7 +82,7 @@ export default {
         node.innerHTML = `
           <div class="ad-thumb">
             ${url ? `<img src="${url}" style="width:100%;height:100%;object-fit:cover">`
-                  : '<div class="ph small" style="height:100%"><div class="ph-ico">' + IMAGE + '</div><div class="ph-text">待上传</div></div>'}
+                  : placeholderHtml('image', 'small')}
           </div>
           <div class="ad-info">
             <div class="nm">${esc(p.name)}</div>

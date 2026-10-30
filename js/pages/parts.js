@@ -71,19 +71,25 @@ export function thumbHtml(p, cls = 'p-img', small = false, tip = '') {
   return `<div class="${cls}" data-mid="">${placeholderHtml('image', small ? 'small' : 'large', tip)}</div>`;
 }
 
-/** 产品网格卡片 */
+/** 产品网格卡片
+ *  层级：图上系列角标 → 作品名 → 子类型 → 底部一行「SN + 状态」
+ *  不展示价格（按需求：产品只作成果展示，不标注价格）
+ */
 export function productCard(p) {
   const c = catOf(p.category);
   const sold = p.status === 'sold';
   return `<div class="p-card" data-sn="${esc(p.sn)}">
-    ${thumbHtml(p, 'p-img', true, '待上传实拍图')}
-    <div class="p-body">
+    <div class="p-media">
+      ${thumbHtml(p, 'p-img', true)}
+      <span class="p-cat" style="background:${c.grad}">${esc(c.name)}</span>
+      ${sold ? '<span class="p-flag">已售出</span>' : ''}
+    </div>
+    <div class="p-info">
       <div class="p-name">${esc(p.name)}</div>
-      <div class="p-sub">${esc(c.name)} · ${esc(p.subType || '')}</div>
-      <div class="p-sn">${snBadge(p.sn, false, true)}</div>
+      <div class="p-sub">${esc(p.subType || '')}</div>
       <div class="p-foot">
-        ${p.price ? `<div class="p-price">¥${esc(p.price)}</div>` : '<div class="p-price free">非卖品</div>'}
-        <div class="p-status ${sold ? 'sold' : 'unsold'}">${statusText(p.status)}</div>
+        ${snBadge(p.sn, false, true)}
+        <span class="p-status ${sold ? 'sold' : 'unsold'}">${sold ? '已售出' : '在售'}</span>
       </div>
     </div>
   </div>`;

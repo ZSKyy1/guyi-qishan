@@ -3,7 +3,7 @@
  * 策略：HTML 走网络优先（保证更新），静态资源走缓存优先
  */
 // 版本号变更会强制刷新缓存 —— 每次发版务必 +1，否则用户会一直拿到旧代码
-const CACHE = 'guyi-app-v4';
+const CACHE = 'guyi-app-v5';
 const ASSETS = [
   './',
   './index.html',
